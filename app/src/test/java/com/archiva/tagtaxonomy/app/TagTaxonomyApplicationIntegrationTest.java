@@ -9,7 +9,15 @@ import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@SpringBootTest(
+        properties = {
+                "spring.liquibase.enabled=true",
+                "spring.liquibase.change-log=classpath:db/changelog/db.changelog-master.yaml",
+                "spring.liquibase.default-schema=PUBLIC",
+                "logging.level.org.springframework.boot.autoconfigure.liquibase=DEBUG",
+                "logging.level.liquibase=DEBUG"
+        }
+)
 @ActiveProfiles("test")
 class TagTaxonomyApplicationIntegrationTest {
 

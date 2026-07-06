@@ -34,7 +34,7 @@ public class TagValueService {
         if (parentId != null) {
             TagValue parent = resolveParent(parentId);
             ensureSameTagType(parent, tagType);
-            validateDepth(parent, tagValue);
+            validateDepth(parent);
             tagValue.setParent(parent);
         }
         return tagValueRepository.save(tagValue);
@@ -56,7 +56,8 @@ public class TagValueService {
             TagValue parent = resolveParent(parentId);
             ensureSameTagType(parent, tagType);
             ensureNotSelf(parent, publicId);
-            validateDepth(parent, updatedValue);
+            ensureNotDescendant(parent, existing);
+            validateDepth(parent);
             existing.setParent(parent);
         } else {
             existing.setParent(null);
@@ -98,15 +99,25 @@ public class TagValueService {
         }
     }
 
-    private void validateDepth(TagValue parent, TagValue tagValue) {
-        int depth = 0;
+    private void validateDepth(TagValue parent) {
+        int depth = 1;
         TagValue cursor = parent;
-        while (cursor != null) {
+        while (cursor.getParent() != null) {
             depth++;
             cursor = cursor.getParent();
         }
-        if (depth > 5) {
+        if (depth >= 5) {
             throw new ConflictException("Maximum tag value depth is 5");
+        }
+    }
+
+    private void ensureNotDescendant(TagValue parent, TagValue existing) {
+        TagValue cursor = parent;
+        while (cursor != null) {
+            if (cursor.getPublicId().equals(existing.getPublicId())) {
+                throw new ConflictException("Tag value cannot be moved under its own descendant");
+            }
+            cursor = cursor.getParent();
         }
     }
 
@@ -120,7 +131,7 @@ public class TagValueService {
         if (tagValue.getName().length() > 100) {
             throw new IllegalArgumentException("Tag value name must be at most 100 characters");
         }
-        if (tagValue.getDescription() != null && tagValue.getDescription().length() > 500) {
+        if (tagValue.getDescription() instanceof String description && description.length() > 500) {
             throw new IllegalArgumentException("Tag value description must be at most 500 characters");
         }
     }

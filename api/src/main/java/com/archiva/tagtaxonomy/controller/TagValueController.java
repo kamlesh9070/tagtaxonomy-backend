@@ -1,4 +1,4 @@
-package com.archiva.tagtaxonomy.api.controller;
+package com.archiva.tagtaxonomy.controller;
 
 import com.archiva.tagtaxonomy.api.dto.CreateTagValueRequest;
 import com.archiva.tagtaxonomy.api.dto.TagValueResponse;

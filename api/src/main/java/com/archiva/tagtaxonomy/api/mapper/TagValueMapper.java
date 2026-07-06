@@ -11,6 +11,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface TagValueMapper {
 
+    @Mapping(target = "id", source = "publicId")
     @Mapping(target = "tagTypeId", source = "tagType.publicId")
     @Mapping(target = "parentId", source = "parent.publicId")
     TagValueResponse toResponse(TagValue entity);

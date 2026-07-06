@@ -16,6 +16,8 @@ spring:
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.yaml
     default-schema: ${DB_SCHEMA:public}
+    parameters:
+      DB_SCHEMA: ${DB_SCHEMA:public}
   mvc:
     throw-exception-if-no-handler-found: true
 
