@@ -1,0 +1,32 @@
+# Git ignore for Tag Taxonomy Backend
+# Java/Gradle
+.gradle/
+build/
+dist/
+*.jar
+!gradle-wrapper.jar
+*.class
+.gradle-install/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+*~
+.project
+.classpath
+
+# Environment
+.env
+.env.local
+local.properties
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+*.log
+*.pid

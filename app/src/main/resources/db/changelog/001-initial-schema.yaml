@@ -1,0 +1,146 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: archiva
+      changes:
+        - sql:
+            sql: CREATE SCHEMA IF NOT EXISTS ${DB_SCHEMA:public}
+        - createSequence:
+            sequenceName: entity_id_seq
+            startValue: 1
+            incrementBy: 50
+            schemaName: ${DB_SCHEMA:public}
+        - createTable:
+            tableName: tag_type
+            schemaName: ${DB_SCHEMA:public}
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: public_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: name
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: VARCHAR(500)
+              - column:
+                  name: is_multi_value
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_required
+                  type: BOOLEAN
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_date
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_date
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: BIGINT
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: tag_value
+            schemaName: ${DB_SCHEMA:public}
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: public_id
+                  type: UUID
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: name
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: VARCHAR(500)
+              - column:
+                  name: tag_type_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: parent_id
+                  type: BIGINT
+              - column:
+                  name: created_date
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: modified_date
+                  type: TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: BIGINT
+                  defaultValueNumeric: 0
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: tag_value
+            baseColumnNames: tag_type_id
+            referencedTableName: tag_type
+            referencedColumnNames: id
+            constraintName: fk_tag_value_tag_type
+            schemaName: ${DB_SCHEMA:public}
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: tag_value
+            baseColumnNames: parent_id
+            referencedTableName: tag_value
+            referencedColumnNames: id
+            constraintName: fk_tag_value_parent
+            schemaName: ${DB_SCHEMA:public}
+            onDelete: CASCADE
+        - sql:
+            sql: CREATE UNIQUE INDEX IF NOT EXISTS uk_tag_type_name_ci ON ${DB_SCHEMA:public}.tag_type (lower(name))
+        - createIndex:
+            indexName: idx_tag_value_tag_type
+            tableName: tag_value
+            schemaName: ${DB_SCHEMA:public}
+            columns:
+              - column:
+                  name: tag_type_id
+        - createIndex:
+            indexName: idx_tag_value_parent
+            tableName: tag_value
+            schemaName: ${DB_SCHEMA:public}
+            columns:
+              - column:
+                  name: parent_id
