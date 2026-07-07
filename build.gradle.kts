@@ -34,6 +34,7 @@ subprojects {
 
     tasks.withType<JavaCompile>().configureEach {
         options.compilerArgs.add("--enable-preview")
+        options.compilerArgs.add("-parameters")
     }
 
     tasks.withType<Test>().configureEach {
