@@ -73,6 +73,8 @@ subprojects {
             dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-validation")
             dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-data-jpa")
             dependencies.add("implementation", "org.springframework.boot:spring-boot-starter-liquibase")
+            dependencies.add("implementation", "org.mapstruct:mapstruct:1.6.3")
+            dependencies.add("annotationProcessor", "org.mapstruct:mapstruct-processor:1.6.3")
             dependencies.add("runtimeOnly", "com.h2database:h2")
             dependencies.add("testImplementation", "org.springframework.boot:spring-boot-starter-test")
         }

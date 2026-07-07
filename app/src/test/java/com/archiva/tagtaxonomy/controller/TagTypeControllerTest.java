@@ -1,9 +1,9 @@
 package com.archiva.tagtaxonomy.controller;
 
-import com.archiva.tagtaxonomy.api.dto.CreateTagTypeRequest;
-import com.archiva.tagtaxonomy.api.dto.TagTypeResponse;
-import com.archiva.tagtaxonomy.api.exception.GlobalExceptionHandler;
-import com.archiva.tagtaxonomy.api.mapper.TagTypeMapper;
+import com.archiva.tagtaxonomy.dto.CreateTagTypeRequest;
+import com.archiva.tagtaxonomy.dto.TagTypeResponse;
+import com.archiva.tagtaxonomy.exception.GlobalExceptionHandler;
+import com.archiva.tagtaxonomy.mapper.TagTypeMapper;
 import com.archiva.tagtaxonomy.service.entity.TagType;
 import com.archiva.tagtaxonomy.service.service.TagTypeService;
 import org.junit.jupiter.api.BeforeEach;

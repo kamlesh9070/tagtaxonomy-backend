@@ -1,4 +1,4 @@
-package com.archiva.tagtaxonomy.api.dto;
+package com.archiva.tagtaxonomy.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 
 import java.util.UUID;
 
-public record UpdateTagValueRequest(
+public record CreateTagValueRequest(
         @NotBlank(message = "Tag value name is required")
         @Size(max = 100, message = "Tag value name must be at most 100 characters")
         String name,
@@ -17,9 +17,6 @@ public record UpdateTagValueRequest(
         @NotNull(message = "Tag type id is required")
         UUID tagTypeId,
 
-        UUID parentId,
-
-        @NotNull(message = "Version is required")
-        Long version
+        UUID parentId
 ) {
 }

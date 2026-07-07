@@ -1,9 +1,9 @@
-package com.archiva.tagtaxonomy.api.mapper;
+package com.archiva.tagtaxonomy.mapper;
 
-import com.archiva.tagtaxonomy.api.dto.CreateTagValueRequest;
-import com.archiva.tagtaxonomy.api.dto.TagValueResponse;
-import com.archiva.tagtaxonomy.api.dto.TagValueTreeResponse;
-import com.archiva.tagtaxonomy.api.dto.UpdateTagValueRequest;
+import com.archiva.tagtaxonomy.dto.CreateTagValueRequest;
+import com.archiva.tagtaxonomy.dto.TagValueResponse;
+import com.archiva.tagtaxonomy.dto.TagValueTreeResponse;
+import com.archiva.tagtaxonomy.dto.UpdateTagValueRequest;
 import com.archiva.tagtaxonomy.service.entity.TagValue;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

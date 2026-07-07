@@ -1,4 +1,4 @@
-package com.archiva.tagtaxonomy.api.exception;
+package com.archiva.tagtaxonomy.exception;
 
 import java.time.Instant;
 import java.util.Map;

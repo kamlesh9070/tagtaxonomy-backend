@@ -1,4 +1,4 @@
-package com.archiva.tagtaxonomy.api.validation;
+package com.archiva.tagtaxonomy.validation;
 
 public final class ValidationUtils {
     private ValidationUtils() {

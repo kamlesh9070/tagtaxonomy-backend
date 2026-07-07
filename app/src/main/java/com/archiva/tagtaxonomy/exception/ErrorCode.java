@@ -1,4 +1,4 @@
-package com.archiva.tagtaxonomy.api.exception;
+package com.archiva.tagtaxonomy.exception;
 
 public enum ErrorCode {
     VALIDATION_ERROR,

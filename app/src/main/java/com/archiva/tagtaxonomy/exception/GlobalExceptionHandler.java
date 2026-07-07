@@ -1,4 +1,4 @@
-package com.archiva.tagtaxonomy.api.exception;
+package com.archiva.tagtaxonomy.exception;
 
 import com.archiva.tagtaxonomy.service.exception.BusinessException;
 import com.archiva.tagtaxonomy.service.exception.ConflictException;

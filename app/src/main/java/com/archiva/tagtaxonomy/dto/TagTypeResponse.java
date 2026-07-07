@@ -1,4 +1,4 @@
-package com.archiva.tagtaxonomy.api.dto;
+package com.archiva.tagtaxonomy.dto;
 
 import java.util.UUID;
 

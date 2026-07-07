@@ -1,10 +1,9 @@
-package com.archiva.tagtaxonomy.api.dto;
+package com.archiva.tagtaxonomy.dto;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public record UpdateTagTypeRequest(
+public record CreateTagTypeRequest(
         @NotBlank(message = "Tag type name is required")
         @Size(max = 100, message = "Tag type name must be at most 100 characters")
         String name,
@@ -14,9 +13,6 @@ public record UpdateTagTypeRequest(
 
         boolean isMultiValue,
 
-        boolean isRequired,
-
-        @NotNull(message = "Version is required")
-        Long version
+        boolean isRequired
 ) {
 }
